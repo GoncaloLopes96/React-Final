@@ -1,0 +1,79 @@
+/* Estilo para o título */
+h2 {
+  
+  font-size: 28px;
+  font-weight: bold;
+  margin: 30px 0;
+  text-align: center;
+  position: relative;
+  padding-bottom: 10px;
+}
+
+h2:after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 3px;
+  background-color: #3b82f6;
+  border-radius: 3px;
+}
+
+h2:hover {
+  color: #3b82f6;
+  transition: color 0.3s ease;
+}
+
+/* Cabeçalho da tarefa */
+.task-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+
+/* Checkbox de status */
+.task-status-checkbox {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  border: 2px solid #d1d5db;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+}
+
+.task-status-checkbox.pending {
+  background-color: #fff;
+  border-color: #ef4444;
+}
+
+.task-status-checkbox.completed {
+  background-color: #10b981;
+  border-color: #10b981;
+}
+
+.task-status-checkbox .checkmark {
+  color: white;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+/* Título da tarefa com marcação de concluído */
+.completed-task {
+  text-decoration: line-through;
+  color: #9ca3af;
+}
+
+/* Mensagem sem tarefas */
+.no-tasks {
+  text-align: center;
+  padding: 40px 0;
+  color: #6b7280;
+  font-style: italic;
+}

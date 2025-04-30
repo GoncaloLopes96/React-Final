@@ -1,0 +1,94 @@
+{
+  "tasks": [
+    {
+      "id": "1",
+      "title": "Estudar React",
+      "description": "Revisão de hooks",
+      "priority": "baixa",
+      "done": false
+    },
+    {
+      "id": "2",
+      "title": "Finalizar projeto Frontend",
+      "description": "Implementar componentes restantes",
+      "priority": "alta",
+      "done": false,
+      "subtasks": [
+        {
+          "id": "4",
+          "title": "Implementar Header",
+          "done": true
+        },
+        {
+          "id": "5",
+          "title": "Criar componente de formulário",
+          "done": false
+        }
+      ]
+    },
+    {
+      "id": "3",
+      "title": "Preparar documentação",
+      "description": "Documentar API e funcionalidades",
+      "priority": "media",
+      "done": false
+    },
+    {
+      "id": "4",
+      "title": "Testar aplicação",
+      "description": "Executar testes unitários e de integração",
+      "priority": "alta",
+      "done": false,
+      "subtasks": [
+        {
+          "id": "6",
+          "title": "Escrever testes unitários",
+          "done": false
+        },
+        {
+          "id": "7",
+          "title": "Configurar teste e2e",
+          "done": false
+        }
+      ]
+    },
+    {
+      "id": "5",
+      "title": "Reunião com equipa",
+      "description": "Discutir próximas etapas do projeto",
+      "priority": "alta",
+      "done": false
+    },
+    {
+      "id": "6",
+      "title": "Otimizar performance da app",
+      "description": "Identificar e resolver bugs de desempenho",
+      "priority": "alta",
+      "done": false,
+      "subtasks": [
+        {
+          "id": "8",
+          "title": "Medir tempo de carregamento",
+          "done": true
+        },
+        {
+          "id": "9",
+          "title": "Utilizar React.memo",
+          "done": false
+        },
+        {
+          "id": "10",
+          "title": "Implementar lazy loading",
+          "done": false
+        }
+      ]
+    },
+    {
+      "id": "7",
+      "title": "Otimizar frontend",
+      "description": "Identificar bugs",
+      "priority": "baixa",
+      "done": false
+    }
+  ]
+}
