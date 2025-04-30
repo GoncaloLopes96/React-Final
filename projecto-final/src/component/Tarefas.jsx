@@ -9,7 +9,13 @@ function Tarefas() {
 
   useEffect(() => {
     axios.get('http://localhost:3002/tasks')
-      .then((res) => setTarefas(res.data))
+      .then((res) => {
+        // Ordenar por data de criação (mais recentes primeiro)
+        const tarefasOrdenadas = [...res.data].sort((a, b) => 
+          new Date(b.createdAt || 0) - new Date(a.createdAt || 0)
+        );
+        setTarefas(tarefasOrdenadas);
+      })
       .catch((err) => console.error('Erro ao buscar tarefas:', err))
   }, [])
 

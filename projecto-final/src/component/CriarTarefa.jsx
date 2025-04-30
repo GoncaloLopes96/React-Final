@@ -11,10 +11,15 @@ function CriarTarefa() {
   const handleSubmit = async (e) => {
     e.preventDefault()
     try {
-      const novaTarefa = { title, description, priority }
+      const novaTarefa = { 
+        title, 
+        description, 
+        priority,
+        createdAt: new Date().toISOString(), // Adiciona timestamp de criação
+        done: false
+      }
       await axios.post('http://localhost:3002/tasks', novaTarefa)
       alert('Tarefa criada com sucesso!')
-      // limpar os campos
       setTitle('')
       setDescription('')
       setPriority('baixa')
