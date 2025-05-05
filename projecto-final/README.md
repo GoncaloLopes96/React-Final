@@ -50,7 +50,6 @@ Este projeto é um gestor de tarefas desenvolvido em React, permitindo aos utili
 │   ├── api/          # Dados simulados para o JSON Server
 │   ├── component/    # Componentes React (Tarefas, CriarTarefa, etc.)
 │   ├── nav/          # Componentes de navegação
-│   ├── context/      # Context API para gestão de estado global
 │   ├── App.jsx       # Componente principal e rotas
 │   └── main.jsx      # Ponto de entrada da aplicação
 ```
