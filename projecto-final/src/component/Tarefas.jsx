@@ -10,7 +10,7 @@ function Tarefas() {
   useEffect(() => {
     axios.get('http://localhost:3002/tasks')
       .then((res) => {
-        // Ordenar por data de criação (mais recentes primeiro)
+        
         const tarefasOrdenadas = [...res.data].sort((a, b) => 
           new Date(b.createdAt || 0) - new Date(a.createdAt || 0)
         );
@@ -31,18 +31,18 @@ function Tarefas() {
 
   const toggleTaskStatus = async (id) => {
     try {
-      // Encontrar a tarefa atual
+      
       const tarefa = tarefas.find((t) => t.id === id)
       
       if (!tarefa) return
       
-      // Inverter o estado done
+      
       const novoDone = !tarefa.done
       
-      // Atualizar no servidor
+      
       await axios.patch(`http://localhost:3002/tasks/${id}`, { done: novoDone })
       
-      // Atualizar o estado local
+      
       setTarefas(tarefas.map((t) => 
         t.id === id ? { ...t, done: novoDone } : t
       ))

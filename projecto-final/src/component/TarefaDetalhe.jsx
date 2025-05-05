@@ -10,7 +10,6 @@ function TarefaDetalhe() {
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
   
-  // Estados para gerenciar novas subtarefas
   const [novaSubtarefa, setNovaSubtarefa] = useState('')
   const [editandoSubtarefa, setEditandoSubtarefa] = useState(null)
   const [textoEdicao, setTextoEdicao] = useState('')
@@ -31,41 +30,34 @@ function TarefaDetalhe() {
     carregarTarefa()
   }, [id])
 
-  // Adicionar nova subtarefa
   const adicionarSubtarefa = async (e) => {
     e.preventDefault()
     if (!novaSubtarefa.trim()) return
 
     try {
-      // Verificar se o array subtasks já existe
       const subtasks = tarefa.subtasks || []
       
-      // Encontrar o maior ID existente e incrementar
       let maxId = 0;
       subtasks.forEach(subtask => {
         const idNum = parseInt(subtask.id.replace(/^\D+/g, '') || 0);
         if (!isNaN(idNum) && idNum > maxId) maxId = idNum;
       });
       
-      // Criar nova subtarefa
       const novaSubtarefaObj = {
-        id: String(maxId + 1), // ID simples e sequencial
+        id: String(maxId + 1),
         title: novaSubtarefa,
         done: false
       }
       
-      // Atualizar no servidor - colocar nova subtarefa no início
       await axios.patch(`http://localhost:3002/tasks/${id}`, {
         subtasks: [novaSubtarefaObj, ...subtasks]
       })
       
-      // Atualizar estado local - colocar nova subtarefa no início
       setTarefa({
         ...tarefa,
         subtasks: [novaSubtarefaObj, ...subtasks]
       })
       
-      // Limpar campo de entrada
       setNovaSubtarefa('')
     } catch (error) {
       console.error('Erro ao adicionar subtarefa:', error)
@@ -73,7 +65,6 @@ function TarefaDetalhe() {
     }
   }
 
-  // Alternar estado de conclusão de subtarefa
   const toggleSubtarefa = async (subtarefaId) => {
     try {
       const subtasks = [...tarefa.subtasks]
@@ -81,13 +72,10 @@ function TarefaDetalhe() {
       
       if (index === -1) return
       
-      // Inverter o estado done
       subtasks[index].done = !subtasks[index].done
       
-      // Atualizar no servidor
       await axios.patch(`http://localhost:3002/tasks/${id}`, { subtasks })
       
-      // Atualizar estado local
       setTarefa({ ...tarefa, subtasks })
     } catch (error) {
       console.error('Erro ao atualizar subtarefa:', error)
@@ -95,7 +83,6 @@ function TarefaDetalhe() {
     }
   }
 
-  // Editar subtarefa
   const iniciarEdicaoSubtarefa = (subtarefa) => {
     setEditandoSubtarefa(subtarefa.id)
     setTextoEdicao(subtarefa.title)
@@ -110,16 +97,12 @@ function TarefaDetalhe() {
       
       if (index === -1) return
       
-      // Atualizar o texto
       subtasks[index].title = textoEdicao
       
-      // Atualizar no servidor
       await axios.patch(`http://localhost:3002/tasks/${id}`, { subtasks })
       
-      // Atualizar estado local
       setTarefa({ ...tarefa, subtasks })
       
-      // Limpar estado de edição
       setEditandoSubtarefa(null)
       setTextoEdicao('')
     } catch (error) {
@@ -128,17 +111,14 @@ function TarefaDetalhe() {
     }
   }
 
-  // Apagar subtarefa
   const apagarSubtarefa = async (subtarefaId) => {
     if (!window.confirm('Tem certeza que deseja excluir esta subtarefa?')) return
     
     try {
       const subtasks = tarefa.subtasks.filter(s => s.id !== subtarefaId)
       
-      // Atualizar no servidor
       await axios.patch(`http://localhost:3002/tasks/${id}`, { subtasks })
       
-      // Atualizar estado local
       setTarefa({ ...tarefa, subtasks })
     } catch (error) {
       console.error('Erro ao apagar subtarefa:', error)
@@ -181,11 +161,9 @@ function TarefaDetalhe() {
           </div>
         </div>
 
-        {/* Seção de subtarefas */}
         <div className="subtasks-section">
           <h3>Subtarefas</h3>
           
-          {/* Form para adicionar subtarefa */}
           <form className="add-subtask-form" onSubmit={adicionarSubtarefa}>
             <input 
               type="text"
@@ -197,7 +175,6 @@ function TarefaDetalhe() {
             <button type="submit" className="add-subtask-button">Adicionar</button>
           </form>
           
-          {/* Lista de subtarefas */}
           <div className="subtasks-list">
             {tarefa.subtasks && tarefa.subtasks.length > 0 ? (
               tarefa.subtasks.map((subtarefa) => (

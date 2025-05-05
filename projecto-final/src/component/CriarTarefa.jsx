@@ -15,7 +15,7 @@ function CriarTarefa() {
         title, 
         description, 
         priority,
-        createdAt: new Date().toISOString(), // Adiciona timestamp de criação
+        createdAt: new Date().toISOString(),
         done: false
       }
       await axios.post('http://localhost:3002/tasks', novaTarefa)
